@@ -1,10 +1,24 @@
 fn fizzbuzz(number: i8) -> String {
-    if number == 3 {
+    let mul3 = number % 3 == 0;
+    let mul5 = number % 5 == 0;
+    let is_buzz = mul5;
+    let is_fizz = mul3;
+    let is_fizz_buzz = mul3 && mul5;
+
+    if is_fizz_buzz {
+        return "fizzbuzz".to_string();
+    }
+
+    if is_fizz {
         return "fizz".to_string();
     }
-    return number.to_string();
-}
 
+    if is_buzz {
+        return "buzz".to_string();
+    }
+
+    number.to_string()
+}
 
 #[cfg(test)]
 mod tests {
@@ -22,7 +36,23 @@ mod tests {
     }
 
     #[test]
-    fn test_fizzbuzz_3_returns_3() {
+    fn test_fizzbuzz_3_returns_fizz() {
         assert_eq!(fizzbuzz(3i8), "fizz");
     }
+
+    #[test]
+    fn test_fizzbuzz_4_returns_4() {
+        assert_eq!(fizzbuzz(4i8), "4");
+    }
+
+    #[test]
+    fn test_fizzbuzz_5_returns_buzz() {
+        assert_eq!(fizzbuzz(5i8), "buzz");
+    }
+
+    #[test]
+    fn test_fizzbuzz_15_returns_buz() {
+        assert_eq!(fizzbuzz(15i8), "fizzbuzz");
+    }
 }
+
